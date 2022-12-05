@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ow-mods/owml/master/schemas/manifest_schema.json",
+  "filename": "NomaiTextPrinter.dll",
+  "author": "coderCleric",
+  "name": "Nomai Text Printer",
+  "uniqueName": "Cleric.NomaiTextPrinter",
+  "version": "1.0.0",
+  "owmlVersion": "2.8.0",
+  "dependencies": []
+}
