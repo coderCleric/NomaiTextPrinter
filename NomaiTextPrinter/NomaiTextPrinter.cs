@@ -36,6 +36,11 @@ namespace NomaiTextPrinter
                 {
                     //Try and get the text data from the json
                     AstroObject planet = text.GetComponentInParent<AstroObject>();
+                    if (planet == null)
+                    {
+                        ModHelper.Console.WriteLine("Couldn't find a planet that the text is attached to!", MessageType.Error);
+                        return;
+                    }
                     TranslatorTextInfo textInfo = GetTextInfo(planet.GetCustomName(), text._nomaiTextAsset.name);
                     if (textInfo == null)
                         return;
@@ -364,6 +369,11 @@ namespace NomaiTextPrinter
         {
             //Get the whole list of texts from the body
             TranslatorTextInfo[] texts = newHorizonsAPI.QueryBody<TranslatorTextInfo[]>(bodyName, "$.Props.translatorText");
+            if(texts == null || texts.Length == 0)
+            {
+                ModHelper.Console.WriteLine("Could not find an NH config for the body this text is attached to!", MessageType.Error);
+                return null;
+            }
 
             //Look for one with a matching name
             TranslatorTextInfo info = null;
