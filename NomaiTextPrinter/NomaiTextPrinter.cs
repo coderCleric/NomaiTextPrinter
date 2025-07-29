@@ -1,20 +1,18 @@
 ﻿using NewHorizons.External.Modules.TranslatorText;
 using OWML.Common;
 using OWML.ModHelper;
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace NomaiTextPrinter
 {
-    /**
-     * TODO:
-     * - Configurable key for the print
-     */
     public class NomaiTextPrinter : ModBehaviour
     {
         private NomaiTranslatorProp translator = null;
         private INewHorizons newHorizonsAPI = null;
+        private Key printKey = Key.M;
 
         private void Start()
         {
@@ -27,7 +25,7 @@ namespace NomaiTextPrinter
         public void Update()
         {
             //Give a printout for the arc info for the collection the player is looking at
-            if (Keyboard.current[Key.M].wasPressedThisFrame)
+            if (Keyboard.current[printKey].wasPressedThisFrame)
             {
                 NomaiText text = GetTranslatorText();
 
@@ -396,6 +394,22 @@ namespace NomaiTextPrinter
                 ModHelper.Console.WriteLine("Multiple texts with same xml name found.", MessageType.Warning);
 
             return info;
+        }
+
+        /**
+         * Set up the config for the key
+         */
+        public override void Configure(IModConfig config)
+        {
+            string keyStr = config.GetSettingsValue<string>("Print Key");
+            if (!Enum.TryParse<Key>(keyStr, true, out printKey))
+            {
+                printKey = Key.M;
+                config.SetSettingsValue("Print Key", "M");
+                ModHelper.Console.WriteLine($"Invalid key string in settings! Defaulting to M.", MessageType.Warning);
+            }
+            else
+                ModHelper.Console.WriteLine($"Print key updated to {printKey}.");
         }
     }
 }
