@@ -4,7 +4,7 @@
   "author": "coderCleric",
   "name": "Nomai Text Printer",
   "uniqueName": "Cleric.NomaiTextPrinter",
-  "version": "1.0.0",
-  "owmlVersion": "2.8.0",
+  "version": "1.1.0",
+  "owmlVersion": "2.15.3",
     "dependencies": [ "xen.NewHorizons" ]
 }
