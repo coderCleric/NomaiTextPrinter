@@ -10,7 +10,6 @@ namespace NomaiTextPrinter
     /**
      * TODO:
      * - Configurable key for the print
-     * - Give them a seed if it's zero
      */
     public class NomaiTextPrinter : ModBehaviour
     {
