@@ -248,8 +248,13 @@ namespace NomaiTextPrinter
             ret += $"\"xmlFile\": \"{textInfo.xmlFile}\",";
 
             //Finally, get the seed
-            if (HasSpirals(textInfo.type) && textInfo.seed != 0)
-                ret += $"\"seed\": {textInfo.seed},";
+            if (HasSpirals(textInfo.type))
+            {
+                if(textInfo.seed != 0)
+                    ret += $"\"seed\": {textInfo.seed},";
+                else
+                    ret += $"\"seed\": {textInfo.xmlFile.GetHashCode()},";
+            }
 
             return ret;
         }
