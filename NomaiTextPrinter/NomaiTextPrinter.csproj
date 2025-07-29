@@ -27,4 +27,10 @@
   <ItemGroup>
     <Content Include="NomaiTextPrinter.csproj.user" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NewHorizons">
+      <HintPath>DependencyStorage\NewHorizons.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
 </Project>

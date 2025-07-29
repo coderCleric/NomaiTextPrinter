@@ -6,5 +6,5 @@
   "uniqueName": "Cleric.NomaiTextPrinter",
   "version": "1.0.0",
   "owmlVersion": "2.8.0",
-  "dependencies": []
+    "dependencies": [ "xen.NewHorizons" ]
 }
