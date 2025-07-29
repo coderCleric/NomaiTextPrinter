@@ -308,6 +308,10 @@ namespace NomaiTextPrinter
                 else if (matName.Contains("Effects_NOM_TextChild_mat"))
                 {
                     typeName = info.arcInfo[i].type.ToString().ToLower();
+
+                    //If it's not a child or a teen, we know they intentionally changed it
+                    if (!typeName.Equals("child") && !typeName.Equals("teenager")) 
+                        typeName = "child";
                 }
                 else if (matName.Contains("Effects_IP_Text_mat"))
                     typeName = "stranger";
@@ -388,10 +392,16 @@ namespace NomaiTextPrinter
 
             //Error if we found no good texts
             if (info == null)
+            {
                 ModHelper.Console.WriteLine("Could not find text with matching name!", MessageType.Error);
+                return null;
+            }
 
-            if(count > 1)
-                ModHelper.Console.WriteLine("Multiple texts with same xml name found.", MessageType.Warning);
+            if (count > 1)
+            {
+                ModHelper.Console.WriteLine("Multiple texts with same xml name found. Make sure that all texts use different xml files!", MessageType.Error);
+                return null;
+            }
 
             return info;
         }
